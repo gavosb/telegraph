@@ -13,6 +13,7 @@ const Home = () => {
   
   /*
     Returns the actual component to be displayed, using the currentComponent state.
+    {indicator} is passed down to Room to tell it whether it is a new room or a joined one.
   */
   const getCurrentComponent = () => {
     let component;
