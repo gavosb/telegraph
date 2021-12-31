@@ -15,8 +15,8 @@ This was initially created with create-react-app, so it's pretty straight forwar
 
 It's pretty easy to create a bash script to start the signalling server. Within start.sh simply make it executable and add the following line:
 ```
-'#!/bin/bash'
-'peerjs --sslkey /path/to/key --sslcert /path/to/cert --port 9000 --allow_discovery true --key peerjs --path /'
+#!/bin/bash
+peerjs --sslkey /path/to/key --sslcert /path/to/cert --port 9000 --allow_discovery true --key peerjs --path /
 ```
 - Remember, [npm install peer -g](https://github.com/peers/peerjs-server)
 ## future
