@@ -1,2 +1,2 @@
 # telegraph
-A binary-based telegraph utilizing React-JS and WebRTC.
+A binary-based P2P web-telegraph utilizing React-JS and WebRTC.
