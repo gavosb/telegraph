@@ -4,10 +4,16 @@ import logo from '../logo.png';
 import ServerBrowser from './ServerBrowser.js';
 import Room from './Room.js';
 
+/*
+  The Home Component - Serves as the basis for all other components and to which they all aspire.
+  Different "pages" (components) can be flipped through here with currentComponent.
+*/
 const Home = () => {
-  let [currentComponent, setCurrentComponent] = React.useState("ServerBrowser");
+  let [currentComponent, setCurrentComponent] = React.useState("ServerBrowser"); //hook's currentComponent State
   
-
+  /*
+    Returns the actual component to be displayed, using the currentComponent state.
+  */
   const getCurrentComponent = () => {
     let component;
     switch (currentComponent){
@@ -23,7 +29,13 @@ const Home = () => {
     }
     return component;
   }
-
+  
+  /*
+    Changes the currentComponent state.
+    parameter must be of the following options:
+    'ServerBrowser', 'Room', 'RoomJoined'
+    @param component
+  */
   const changeCurrentComponent = (component) => {
     setCurrentComponent(component);
   }
