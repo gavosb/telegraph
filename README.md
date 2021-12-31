@@ -18,6 +18,6 @@ It's pretty easy to create a bash script to start the signalling server. Within 
 '#!/bin/bash'
 'peerjs --sslkey /path/to/key --sslcert /path/to/cert --port 9000 --allow_discovery true --key peerjs --path /'
 ```
-- Remember, ['npm install peer -g'](https://github.com/peers/peerjs-server)
+- Remember, [npm install peer -g](https://github.com/peers/peerjs-server)
 ## future
 I plan on replacing the sound-based communication system with a continuous stream at some point. This will allow for a higher WPM for users. I need to clean up the CSS as well. Additionally, log-formatting should be customizable. It may also be nice to have a morse code cheat sheet displayed.
