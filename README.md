@@ -2,6 +2,8 @@
 A binary-based P2P web-telegraph utilizing React-JS and WebRTC (PeerJS).
 
 ## guide
+- New Transmission: Open a new room that someone can join.
+- Connect by ID: Enter an ID, possibly from the server-browser, to join their room.
 - Left Arrow Key: Dot.
 - Right Arrow Key: Dash.
 - Toggle Log: Enables the log, which displays all transmissions. Useful for learning.
