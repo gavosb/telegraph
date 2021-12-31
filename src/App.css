@@ -1,0 +1,127 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #3c2f2f;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.Footer {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  color: #be9b7b;
+}
+
+
+
+.Server-browser {
+  justify-content: left;
+  align-items: left;
+  list-style:none;
+  border: 5px solid #3c2f2f;
+  position:relative;
+  width: 30%;
+  left: 50%;
+  right: 50%;
+  margin-bottom: 1%;
+  transform: translate(-50%);
+  min-height: 350px;
+  max-height: 350px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-wrap:break-word;
+  scrollbar-color: #3c2f2f #DFCCAF;
+}
+
+.Key-Button {
+  justify-content: center;
+  align-items: center;
+  background-color: #6f4436;
+  border: 3%;
+  border-color: #3c2f2f;
+  color: white;
+  padding: 2% 5%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 500%;
+}
+
+.Key-Button:hover {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #533429;
+}
+
+.Join-Button {
+  background-color: #6f4436;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2px;
+  border: 3%;
+  border-color: #3c2f2f;
+  font-size: 150%;
+}
+.Join-Button:hover {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #533429;
+}
+
+.Chat {
+  border: 5px solid #3c2f2f;
+  position:relative;
+  width: 30%;
+  left: 50%;
+  right: 50%;
+  margin-bottom: 1%;
+  transform: translate(-50%);
+  min-height: 150px;
+  max-height: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-wrap:break-word;
+  scrollbar-color: #3c2f2f #DFCCAF;
+}
+
+.Disconnect-Button {
+  background-color:#DFCCAF;
+  border: 3%;
+  border-color: #3c2f2f;
+}
+.Logging-Button {
+  color:#000000;
+}
+.Formatting-Button {
+  color:#000000;
+}
+.Server-Button{
+  background-color: #6f4436;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2px;
+  border: 3%;
+  border-color: #3c2f2f;
+  font-size: 100%;
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
