@@ -3,60 +3,61 @@ import '../App.css';
 import Peer from "peerjs";
 import Home from './Home';
 const fs = require('fs')
+
+/*
+  The Room component, displays the Room page. Holds transmission buttons, a disconnect button, and a chat log.
+  All of the WebRTC logic is trapped in here for ease of use, and also since it's relatively short and self-contained within the room.
+  The {indicator} prop is passed down from Home, which tells us if the client is joining a room or creating a new one.
+  This is used for determing when to shut off the connection to the signalling server, removing the peers from the server browser.
+*/
 const Room = ({indicator}) => {
   
-    let text = "memes";
-    let dash = fs.readFileSync('./dash.txt');
+    let dash = fs.readFileSync('./dash.txt'); //double check file paths if anything goes wrong
     let dot = fs.readFileSync('./dot.txt');
-    console.log("Room spawn");
-    if (indicator){
-        console.log("room created");
-    }
+  
     // types: 0 (dash) 1 (dot)
+    // Sends data over DataConnection
     const send = (type) => {
         conn.send(type);
         playSound(type);
-        console.log(peer.id, " - sending: ", type)
     }
-    const changeConnection = (conn) => {
-
-        console.log("remember");
-        //setConnection(conn);
-      }
+    
+    //Creates a new connection to the signalling server
     const peer = new Peer(''+Math.floor(Math.random()*2**18).toString(36).padStart(4,0), {
         host: location.hostname,
         port: 9000, //port of signalling server
         debug: 1,
         path: '/',
-        config: { 'iceServers': [
-            { 'urls': 'stun:stun.l.google.com:19302' }  
-          ] }
+        config: {} // example, a stun server for aiding connection (not necessary): 'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] 
         
     });
 
     window.peer = peer;
 
-
+    //On connection established
     peer.on('open', function () {
-        if (indicator){
+        if (indicator){ //indicator, therefor the peer created the room. Show them their ID. If you find this annoying, remove it.
             alert(`Your device ID is: ${peer.id}`);
         }
     });
 
     let code;
-    function getStreamCode() {
+    //Sets code to the ID of the peer.
+    function getTransmissionCode() {
         code = window.prompt('Enter the transmission code:');
     }
     let conn;
+    //Connects two peers, setting conn to a DataConnection
     function connectPeers() {
         conn = peer.connect(code);
-        changeConnection(conn);
-        console.log("connection established");
-        
-        
     }
+  
     let startTime = Date.now();
     let chatFormatting = false;
+    /*
+      Handles logging and log formatting. Called playSound()
+      @param printVar the character to be logged
+    */
     const printToChat = (printVar) => {
         let chat = document.getElementById("Chat");
         const newDate = Date.now();
@@ -71,7 +72,9 @@ const Room = ({indicator}) => {
         startTime = newDate;
         chat.innerHTML += printVar;
     }
-
+    
+    //plays a Base64 encoding as a sound
+    //If not a 1 or 0, defaults to playing a dot sound.
     function playSound(snd){
         let sound = "";
         switch (snd){
@@ -92,13 +95,14 @@ const Room = ({indicator}) => {
         let audio = new Audio('data:audio/ogg;base64,' + sound);
         audio.play();
     }
+    
+    /*
+      Establishes listeners for the peer - and disconnects peers from server once listeners established
+    */
     function connListener(){
         conn.on('open', function() {
-            console.log(conn);
             // Receive messages
             conn.on('data', function(data) {
-                console.log('Received', data);
-                console.log("data received");
                 if (data != "disconnect"){
                     playSound(data);
                 }else{
@@ -109,8 +113,7 @@ const Room = ({indicator}) => {
             conn.on('close', function(){
                 goHome();
             });
-            // Send messages
-            conn.send("hi lol");
+            //disconnects peers from server, here due to async issues
             if (!indicator){
                 send("disconnect");
                 peer.disconnect();
@@ -118,25 +121,28 @@ const Room = ({indicator}) => {
           });
           
     }
+    //On connection, sets conn to the PeerConnection and prints their ID to the document.
     peer.on('connection', function(connection){
         conn = connection;
-        console.log("peer.on");
-        connListener();
         document.getElementById("peerCode").innerHTML = "Peer ID: " + conn.peer;
           
     });
+  
+    //Unused besides logging when a peer disconnects to the signalling server.
+    //Note: On disconnection from the server, dataConnections and others remain intact because of p2p.
     peer.on('disconnected', function(){
         console.log("disconnected");
     });
-    if (!indicator){
-        getStreamCode();
+    if (!indicator){ //if joining a room, ask for the code
+        getTransmissionCode();
         
     }else{
-        code = peer.id;
+        code = peer.id; //otherwise, set code to peer id
     }
     connectPeers();
     connListener();
     
+    //maps keys to send() functions
     window.addEventListener('keydown', function(event) {
         const key = event.key; // "ArrowRight", "ArrowLeft", "ArrowUp", or "ArrowDown"
         if (key === "ArrowRight"){
@@ -146,15 +152,19 @@ const Room = ({indicator}) => {
         }
     });
     
+    //toggles log
     const toggleChat = () => {
         console.log("test");
         let chat= document.getElementById("Chat");
         chat.hidden = !chat.hidden ;
     }
-
+    
+    //toggles log formatting
     const toggleChatFormatting = () => {
         chatFormatting = !chatFormatting;
     }
+    
+    //completely disconnects from server and closes connection.
     const goHome = () => {
         conn.close();
         peer.destroy();
