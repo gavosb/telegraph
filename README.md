@@ -2,10 +2,10 @@
 A binary-based P2P web-telegraph utilizing React-JS and WebRTC (PeerJS).
 
 ## guide
-Left Arrow Key: Dot.
-Right Arrow Key: Dash.
-Toggle Log: Enables the log, which displays all transmissions. Useful for learning.
-Toggle Log-Formatting: Enables log formatting, which will attempt to format the log with spaces between letters, slashes between words, and line-breaks between sentences. Time-based, at the moment 0.6 seconds of silence must pass for a space, 1 second for a dash, and 5 seconds for a line-break.
+- Left Arrow Key: Dot.
+- Right Arrow Key: Dash.
+- Toggle Log: Enables the log, which displays all transmissions. Useful for learning.
+- Toggle Log-Formatting: Enables log formatting, which will attempt to format the log with spaces between letters, slashes between words, and line-breaks between sentences. Time-based, at the moment 0.6 seconds of silence must pass for a space, 1 second for a dash, and 5 seconds for a line-break.
 
 ## notes
 The sounds are Base64 encoded audio files. I don't know why I did this, it seemed cool at the time and saved me a few bytes. Bizarre sorcery. The downside to this is that they don't play on most mobile browsers.
