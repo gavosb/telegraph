@@ -8,7 +8,7 @@ Toggle Log: Enables the log, which displays all transmissions. Useful for learni
 Toggle Log-Formatting: Enables log formatting, which will attempt to format the log with spaces between letters, slashes between words, and line-breaks between sentences. Time-based, at the moment 0.6 seconds of silence must pass for a space, 1 second for a dash, and 5 seconds for a line-break.
 
 ## notes
-The sounds are Base64 encoded audio files. I don't know why I did this, it seemed cool at the time and saved me a few bytes. Bizarre sorcery.
+The sounds are Base64 encoded audio files. I don't know why I did this, it seemed cool at the time and saved me a few bytes. Bizarre sorcery. The downside to this is that they don't play on most mobile browsers.
 
 ## deployment
 This was initially created with create-react-app, so it's pretty straight forward to deploy. Just create a new react app as you would normally with 'npx create-react-app', then pull some npm magic and run 'npm run build'. Upload the files to a server somewhere and point nginx or what have you there, using the typical index.html. A lets-encrypt cert will do fine for the signalling server. Let it redirect normally. If there are any complaints by the server, add 'add_header Access-Control-Allow-Origin "example.com";' under location / {} within the port 443 server (an nginx example, obviously). This shouldn't be an issue, however.
