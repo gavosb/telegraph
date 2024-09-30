@@ -1,3 +1,7 @@
+# 2024 Notice
+
+This was a really janky project that I did with the sole purpose of producing something, and at the time Hooks were relatively new. There are some absolute travesties in this project, such as mixing different paradigms for manipulation of state, and of course - direct modification of the DOM. Central organization was hardly of consideration here. Still, an interesting project with some practical use.
+
 # telegraph
 A binary-based P2P web-telegraph utilizing React-JS and WebRTC (PeerJS).
 
